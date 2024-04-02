@@ -27,3 +27,12 @@ function woo_fields_remover($fields)
 
     return $fields;
 }
+
+add_action('woocommerce_single_product_summary', 'show_checkout_billing_form', 25);
+
+function show_checkout_billing_form()
+{
+    if (function_exists('woocommerce_checkout')) {
+        woocommerce_checkout();
+    }
+}
