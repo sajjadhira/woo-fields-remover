@@ -70,13 +70,15 @@ function woo_fields_remover($fields)
 }
 
 
+// Remove Add to Cart Button
 remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30);
 
+// Add Direct Checkout Form
 add_action('woocommerce_single_product_summary', 'custom_direct_checkout_form', 30);
 function custom_direct_checkout_form()
 {
     global $product;
     if (!$product->is_type('variable')) {
-        echo do_shortcode('[woocommerce_quick_buy]');
+        echo '<a class="button" href="' . esc_url(wc_get_checkout_url()) . '">' . esc_html__('Buy Now', 'woocommerce') . '</a>';
     }
 }
