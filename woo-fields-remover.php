@@ -11,7 +11,7 @@ add_filter('woocommerce_checkout_fields', 'woo_fields_remover');
 
 function woo_fields_remover($fields)
 {
-    //    remove fields from billing
+    // Remove fields from billing
     // unset($fields['billing']['billing_first_name']);
     unset($fields['billing']['billing_last_name']);
     unset($fields['billing']['billing_company']);
@@ -25,14 +25,46 @@ function woo_fields_remover($fields)
     unset($fields['billing']['billing_email']);
     unset($fields['billing']['ship_to_different_address']);
 
+    // Remove validation rules for billing fields
+    // unset($fields['billing']['billing_last_name']['required']);
+    unset($fields['billing']['billing_company']['required']);
+    // unset($fields['billing']['billing_address_1']['required']);
+    unset($fields['billing']['billing_address_2']['required']);
+    unset($fields['billing']['billing_city']['required']);
+    unset($fields['billing']['billing_postcode']['required']);
+    unset($fields['billing']['billing_country']['required']);
+    unset($fields['billing']['billing_state']['required']);
+    // unset($fields['billing']['billing_phone']['required']);
+    unset($fields['billing']['billing_email']['required']);
+
+    // remove fields from shipping
+    // unset($fields['shipping']['shipping_first_name']);
+    unset($fields['shipping']['shipping_last_name']);
+    unset($fields['shipping']['shipping_company']);
+    // unset($fields['shipping']['shipping_address_1']);
+    unset($fields['shipping']['shipping_address_2']);
+    unset($fields['shipping']['shipping_city']);
+    unset($fields['shipping']['shipping_postcode']);
+    unset($fields['shipping']['shipping_country']);
+    unset($fields['shipping']['shipping_state']);
+    // unset($fields['shipping']['shipping_phone']);
+    unset($fields['shipping']['shipping_email']);
+    unset($fields['shipping']['ship_to_different_address']);
+
+    // Remove validation rules for shipping fields
+    // unset($fields['shipping']['shipping_last_name']['required']);
+    unset($fields['shipping']['shipping_company']['required']);
+    // unset($fields['shipping']['shipping_address_1']['required']);
+    unset($fields['shipping']['shipping_address_2']['required']);
+    unset($fields['shipping']['shipping_city']['required']);
+    unset($fields['shipping']['shipping_postcode']['required']);
+    unset($fields['shipping']['shipping_country']['required']);
+    unset($fields['shipping']['shipping_state']['required']);
+    // unset($fields['shipping']['shipping_phone']['required']);
+    unset($fields['shipping']['shipping_email']['required']);
+
+
+
+
     return $fields;
-}
-
-add_action('woocommerce_single_product_summary', 'show_checkout_billing_form', 25);
-
-function show_checkout_billing_form()
-{
-    if (function_exists('woocommerce_checkout')) {
-        woocommerce_checkout();
-    }
 }
